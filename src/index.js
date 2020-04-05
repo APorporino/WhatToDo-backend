@@ -13,7 +13,7 @@ const auth = require('./middleware/auth.js')
 
 const app = express();
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 //define paths for express config
 const STATIC_DIR = path.join(__dirname,"../static")
@@ -38,5 +38,5 @@ app.use(taskRouter)
 
 
 app.listen(port,()=>{
-    console.log("Listening on port" + port)
+    console.log("Listening on port", port)
 })
