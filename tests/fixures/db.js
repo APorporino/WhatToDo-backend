@@ -67,15 +67,21 @@ const setUpDatabase = async ()=>{
     await Story.deleteMany({})
 
 
-    await new Project(project).save()
+    const projectDB = await new Project(project).save()
     await new Backlog(backlog).save()
+    projectDB.backlog = backlogID
+    await projectDB.save()
     await new Story(story).save()
+
+
 
     await new User(user1).save()
     await new User(user2).save()
 }
 
 module.exports = {
+    project,
+    backlog,
     story,
     user1,
     user2,

@@ -7,6 +7,18 @@ const sprintSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Project'
+    },
+
+    startDate: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    },
+
+    endDate: {
+        type: Date,
+        required: true,
+        default: Date(Date.now() + 12096e5)
     }
 
 },{

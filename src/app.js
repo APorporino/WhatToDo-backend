@@ -11,6 +11,7 @@ const userRouter = require('./routers/user.js')
 const taskRouter = require('./routers/task.js')
 const projectRouter = require('./routers/project.js')
 const storyRouter = require('./routers/story.js')
+const sprintRouter = require('./routers/sprint.js')
 const auth = require('./middleware/auth.js')
 
 const app = express();
@@ -23,5 +24,6 @@ app.use(userRouter)
 app.use(taskRouter)
 app.use(projectRouter)
 app.use(storyRouter)
+app.use(sprintRouter)
 
 module.exports = app
