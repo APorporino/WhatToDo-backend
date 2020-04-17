@@ -2,9 +2,16 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const User = require('../../src/models/user.js')
 const Task = require('../../src/models/task.js')
+const Project = require('../../src/models/project.js')
+const Backlog = require('../../src/models/backlog.js')
+const Story = require('../../src/models/story.js')
+const Sprint = require('../../src/models/sprint.js')
 
 const user1ID = new mongoose.Types.ObjectId()
 const user2ID = new mongoose.Types.ObjectId()
+const backlogID = new mongoose.Types.ObjectId()
+const projectID = new mongoose.Types.ObjectId()
+const storyID = new mongoose.Types.ObjectId()
 
 const user1 = {
     _id: user1ID,
@@ -18,6 +25,7 @@ const user1 = {
         }
     ]
 }
+
 const user2 = {
     _id: user2ID,
     name: "User2",
@@ -31,24 +39,21 @@ const user2 = {
     ]
 }
 
-const task1 = {
-    _id: new mongoose.Types.ObjectId(),
-    description: "Play guitar",
-    owner: user1._id
+const project = {
+    _id: projectID,
+    name: "project1",
 }
 
-const task2 = {
-    _id: new mongoose.Types.ObjectId(),
-    description: "Play drums",
-    completed: true,
-    owner: user1._id
+const backlog = {
+    _id: backlogID,
+    project: projectID
 }
 
-const task3 = {
-    _id: new mongoose.Types.ObjectId(),
-    description: "Play bass",
-    completed: true,
-    owner: user2._id
+const story = {
+    _id: storyID,
+    name: "Story 1",
+    description: "Test story",
+    backlog: backlogID
 }
 
 
@@ -56,19 +61,23 @@ const task3 = {
 const setUpDatabase = async ()=>{
     await User.deleteMany({})
     await Task.deleteMany({})
+    await Project.deleteMany({})
+    await Backlog.deleteMany({})
+    await Sprint.deleteMany({})
+    await Story.deleteMany({})
+
+
+    await new Project(project).save()
+    await new Backlog(backlog).save()
+    await new Story(story).save()
+
     await new User(user1).save()
     await new User(user2).save()
-    await new Task(task1).save()
-    await new Task(task2).save()
-    await new Task(task3).save()
 }
 
 module.exports = {
-    user1ID,
+    story,
     user1,
     user2,
-    task1,
-    task2,
-    task3,
     setUpDatabase
 }

@@ -4,10 +4,10 @@ const auth = require('../middleware/auth.js')
 
 const router = new express.Router()
 
+//create a new task
 router.post('/tasks', auth, async (req,res)=>{
     const task = new Task({
         ...req.body,
-        owner: req.user._id
     })
 
     try{
@@ -57,7 +57,7 @@ router.get('/tasks/:id', auth, async (req,res)=>{
     try{ 
         console.log(req.params.id)
         console.log(req.user._id)
-        const task = await Task.findOne({_id: req.params.id, owner: req.user._id})
+        const task = await Task.findOne({_id: req.params.id})
 
         if (task){
             return res.send(task)

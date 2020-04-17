@@ -54,10 +54,12 @@ const userSchema = new mongoose.Schema({
     timestamps: true,
 })
 
-userSchema.virtual('tasks',{
-    ref: 'Task',
+//virtual list of projects user is apart of
+userSchema.virtual('projects',{
+    ref: 'Project',
     localField: '_id',
-    foreignField: 'owner'
+    foreignField: 'members',
+    justOne: false,
 })
 
 userSchema.methods.toJSON = function(){
@@ -68,7 +70,9 @@ userSchema.methods.toJSON = function(){
     return user
 }
 userSchema.methods.generateAuthenticationToken = async function(){
+    //this is the user passed
 
+    //create a new token using user's id and a secret key and store it in database so user is now authenticated
     const token = jwt.sign({ _id: this._id.toString()}, process.env.JWT_SECRET)
     this.tokens.push({token})
     await this.save()

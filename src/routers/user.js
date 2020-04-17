@@ -53,21 +53,6 @@ router.get('/users/me', auth, async (req,res)=>{
     res.send(req.user)
 })
 
-//old method used to get a specific user
-//recall the :id way used to pass params
-// router.get('/users/:id', auth, async (req,res)=>{
-//     //note :variable is how to pass request parameters 
-//     try {
-//         const user = await User.findById(req.params.id)
-//         if (user){
-//             return res.send(user)
-//         }
-//         res.status(404).send()
-//     }catch(e){
-//         res.status(400).send()
-//     }
-// })
-
 //update any fields of a user you want
 router.patch('/users/me', auth, async (req, res)=>{
     const updateFields = Object.keys(req.body)
@@ -86,18 +71,18 @@ router.patch('/users/me', auth, async (req, res)=>{
     }
 })
 
-//delete your account
-router.delete('/users/me', auth, async (req,res)=>{
-    try{
-        await req.user.remove()
-        //const user = await User.findByIdAndDelete(req.user._id)
-        sendCancellationEmail(req.user.email, req.user.name)
-        return res.send(req.user)
+//delete your account. NEED CASCADE DELETE
+// router.delete('/users/me', auth, async (req,res)=>{
+//     try{
+//         await req.user.remove()
+//         //const user = await User.findByIdAndDelete(req.user._id)
+//         sendCancellationEmail(req.user.email, req.user.name)
+//         return res.send(req.user)
         
-    }catch(e){
-        res.status(500).send()
-    }
-})
+//     }catch(e){
+//         res.status(500).send()
+//     }
+// })
 
 const upload = multer({
     limits: {
@@ -140,6 +125,26 @@ router.get('/users/:id/avatar', async (req,res)=>{
 
     }
     
+})
+
+
+//will get all projects a user is in
+router.get('/users/projects', auth, async (req,res)=>{
+    try{
+        //const tasks = await Task.find({owner: req.user._id})
+        await req.user.populate({
+            path: 'projects',
+            options:{
+                //will be ignored if not provided
+                limit: parseInt(req.query.limit),
+                skip: parseInt(req.query.skip),
+            }
+        }).execPopulate()
+        res.send(req.user.projects)
+    }catch(e){
+        console.log(e)
+        res.status(400).send({Error: e.message})
+    }
 })
 
 

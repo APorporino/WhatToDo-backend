@@ -1,17 +1,21 @@
 {
   "name": "what-to-do",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backedn API for WhatToDo task manager applciation",
   "main": "index.js",
   "scripts": {
     "test": "env-cmd -f ./config/test.env jest --watch --runInBand",
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APorporino/WhatToDo-backend.git"
+  },
   "jest": {
     "testEnvironment": "node"
   },
-  "author": "",
+  "author": "Anthony Porporino",
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.0.0",

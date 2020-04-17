@@ -6,14 +6,21 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    completed: {
-        type: Boolean,
-        default: false
+
+    status: {
+        type: String,
+        default: "Not started"
     },
-    owner: {
+
+    tag: {
+        type: String,
+        default: "dev"
+    },
+
+    story: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
+        ref: 'Story'
     }
 
 },{
