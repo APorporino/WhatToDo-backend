@@ -8,8 +8,6 @@ const { sendWelcomeEmail,sendCancellationEmail } = require('../emails/accounts.j
 
 const router = new express.Router()
 
-
-
 //create a new user
 router.post('/users', async (req,res)=>{
     const user = new User(req.body)
