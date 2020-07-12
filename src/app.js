@@ -2,11 +2,8 @@
 const path = require("path")
 //-------npm modules
 const express = require('express')
-const hbs = require('hbs')
 //-------my modules
 require('./db/mongoose.js')
-const User = require('./models/user.js')
-const Task = require('./models/task.js')
 const userRouter = require('./routers/user.js')
 const taskRouter = require('./routers/task.js')
 const projectRouter = require('./routers/project.js')
