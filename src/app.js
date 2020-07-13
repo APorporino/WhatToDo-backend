@@ -1,8 +1,5 @@
-//-------core modules
-const path = require("path")
-//-------npm modules
 const express = require('express')
-//-------my modules
+
 require('./db/mongoose.js')
 const userRouter = require('./routers/user.js')
 const taskRouter = require('./routers/task.js')

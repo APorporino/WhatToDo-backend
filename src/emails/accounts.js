@@ -1,3 +1,6 @@
+// THIS CODE IS NOT BEING USED
+// IT IS HERE AS REFERENCE IF I EVER DECIDE TO USE IT AGAIN
+
 const sgMail = require('@sendgrid/mail')
 const sendgridAPIKey = process.env.SENDGRID_API_KEY
 

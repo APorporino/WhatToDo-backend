@@ -3,6 +3,10 @@ const validator = require("validator");
 
 const taskSchema = new mongoose.Schema(
   {
+    asignedTo: {
+      type: mongoose.Schema.Types.ObjectId,
+    },
+    
     description: {
       type: String,
       required: true,
@@ -31,7 +35,8 @@ const taskSchema = new mongoose.Schema(
 
 taskSchema.pre("save", async function (next) {
   next();
-});
+})
+
 const Task = mongoose.model("Task", taskSchema);
 
 module.exports = Task;

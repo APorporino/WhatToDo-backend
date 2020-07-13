@@ -5,58 +5,55 @@ const jwt = require("jsonwebtoken");
 
 const Task = require("./task.js");
 
-const userSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
-      validate(pass) {
-        if (pass.length < 7) {
-          throw new Error("Must be 7 characters long");
-        } else if (validator.contains(pass, "password")) {
-          throw new Error("Password cannot contain password");
-        }
-      },
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      validate(email) {
-        if (!validator.isEmail(email)) {
-          throw new Error("Must use a valid email adress");
-        }
-      },
-    },
-    age: {
-      type: Number,
-      required: true,
-      validate(age) {
-        if (age < 18) {
-          throw new Error("User must be older than 18");
-        }
-      },
-    },
-    tokens: [
-      {
-        token: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
-    avatar: {
-      type: Buffer,
+const userSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    validate(pass) {
+      if (pass.length < 7) {
+        throw new Error("Must be 7 characters long");
+      } else if (validator.contains(pass, "password")) {
+        throw new Error("Password cannot contain password");
+      }
     },
   },
-  {
-    timestamps: true,
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    validate(email) {
+      if (!validator.isEmail(email)) {
+        throw new Error("Must use a valid email adress");
+      }
+    },
+  },
+  avatar: {
+    type: Buffer,
+  },
+}, {
+  timestamps: true,
+
+  toObject: {
+    transform: function (doc, ret) {
+      delete ret._id;
+      delete ret.password;
+    }
+  },
+  toJSON: {
+    transform: function (doc, ret) {
+      delete ret._id;
+      delete ret.password;
+    }
   }
-);
+})
 
 //virtual list of projects user is apart of
 userSchema.virtual("projects", {
@@ -66,50 +63,51 @@ userSchema.virtual("projects", {
   justOne: false,
 });
 
-userSchema.methods.toJSON = function () {
-  const user = this.toObject();
-  delete user.password;
-  delete user.tokens;
-  delete user.avatar;
-  return user;
-};
+
 userSchema.methods.generateAuthenticationToken = async function () {
   //this is the user passed
-
   //create a new token using user's id and a secret key and store it in database so user is now authenticated
-  const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET);
-  this.tokens.push({ token });
-  await this.save();
-  return token;
+  const token = jwt.sign({
+    _id: this._id.toString()
+  }, process.env.JWT_SECRET)
+  this.tokens.push({
+    token
+  })
+  await this.save()
+  return token
 };
 
 //findByCredentials function for logging in
 userSchema.statics.findByCredentials = async (email, password) => {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({
+    email
+  })
   if (!user) {
-    throw new Error("User with that email does not exist");
+    throw new Error("User with that email does not exist")
   }
-  const isMatch = await bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password)
   if (!isMatch) {
-    throw new Error("Password is incorrect for this email");
+    throw new Error("Password is incorrect for this email")
   }
-  return user;
+  return user
 };
 
 //hash password before saving
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
-    this.password = await bcrypt.hash(this.password, 8);
+    this.password = await bcrypt.hash(this.password, 8)
   }
-  next();
-});
+  next()
+})
 
 //deletes task of user before deleting user
 userSchema.pre("remove", async function (next) {
-  await Task.deleteMany({ owner: this._id });
-  next();
-});
+  await Task.deleteMany({
+    owner: this._id
+  })
+  next()
+})
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema)
 
 module.exports = User;

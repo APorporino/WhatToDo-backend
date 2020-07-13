@@ -3,7 +3,6 @@ const axios = require('axios').create({
     baseURL: 'https://what-to-do-task-manager.herokuapp.com/users',
     headers: {"Access-Control-Allow-Origin": "*"},
   });
-
 class Signup extends React.Component {
     state = {
         name: "",
@@ -11,10 +10,6 @@ class Signup extends React.Component {
         age: 20,
         password: ""
     }
-
-    AXIOS = axios.create({
-
-    })
 
     signupNewUser(profile) {
         console.log(profile)

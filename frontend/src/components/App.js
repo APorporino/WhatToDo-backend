@@ -5,8 +5,6 @@ import Header from './Header'
 import Login from './Login'
 import Signup from './Signup'
 
-
-
 class App extends React.Component {
 
     render() {
