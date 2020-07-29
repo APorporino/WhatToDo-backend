@@ -27,8 +27,8 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
     unique: true,
+    required: true,
     validate(email) {
       if (!validator.isEmail(email)) {
         throw new Error("Must use a valid email adress");
@@ -67,12 +67,7 @@ userSchema.virtual("projects", {
 userSchema.methods.generateAuthenticationToken = async function () {
   //this is the user passed
   //create a new token using user's id and a secret key and store it in database so user is now authenticated
-  const token = jwt.sign({
-    _id: this._id.toString()
-  }, process.env.JWT_SECRET)
-  this.tokens.push({
-    token
-  })
+  const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET,{ expiresIn: 60 * 60 * 4 })
   await this.save()
   return token
 };

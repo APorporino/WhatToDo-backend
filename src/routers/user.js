@@ -25,16 +25,17 @@ router.post('/users/login', async (req,res)=>{
         //newly created function in schema
         const user = await User.findByCredentials(req.body.email,req.body.password)
         const token = await user.generateAuthenticationToken()
-        res.send({user,token})
+        res.status(201).send({user,token})
     }catch(error){
+        console.log(req.body.email)
+        console.log(error)
         res.status(400).send({error: error.message})
     }
 })
 
 //logout
-router.post('/users/logout', auth, async (req,res)=>{
+router.get('/users/logout', auth, async (req,res)=>{
     try{
-        req.user.tokens = req.user.tokens.filter((token)=> token.token !== req.token)
 
         await req.user.save()
         res.status(200).send()
@@ -44,7 +45,7 @@ router.post('/users/logout', auth, async (req,res)=>{
 })
 
 //get my profile
-router.get('/users/me', auth, async (req,res)=>{
+router.post('/currentUser', auth, async (req,res)=>{
     //req.user is set in auth function in middleware
     res.send(req.user)
 })
@@ -70,6 +71,9 @@ router.patch('/users/me', auth, async (req, res)=>{
 //delete your account. NEED CASCADE DELETE
 // router.delete('/users/me', auth, async (req,res)=>{
 //     try{
+//         await Task.deleteMany({
+//             owner: this._id
+//         })
 //         await req.user.remove()
 //         //const user = await User.findByIdAndDelete(req.user._id)
 //         sendCancellationEmail(req.user.email, req.user.name)
@@ -138,7 +142,6 @@ router.get('/users/projects', auth, async (req,res)=>{
         }).execPopulate()
         res.send(req.user.projects)
     }catch(e){
-        console.log(e)
         res.status(400).send({Error: e.message})
     }
 })

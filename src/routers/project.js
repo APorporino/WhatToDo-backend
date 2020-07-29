@@ -49,13 +49,30 @@ router.patch('/project', auth, async (req,res)=>{
 
 //this route will allow the admin of a project to make another user an admin
 router.patch('/project/addAdmin', auth, async (req, res)=>{
-    const project = await Project.findById(req.body.project_id)
-    if (!project.admins.includes(req.user._id)){
-        throw new Error("You must be an admin to make someone else an admin")
+    try {
+        const project = await Project.findById(req.body.project_id)
+        if (!project.admins.includes(req.user._id)){
+            throw new Error("You must be an admin to make someone else an admin")
+        }
+        project.admins.push(req.body.user_id)
+        await project.save()
+        res.status(200).send(project)
+    }catch(e){
+        res.status(400).send({Error: e.message})
     }
+    
 })
 
+router.get('/projectTasks', auth, async (req,res)=>{
+    try {
+        const project = await Project.findById(req.body.project_id)
+        const backlog = await Backlog.findById(project.backlog)
+        const tasks = await backlog.getAllTasks()
+        res.send(tasks)
 
-
+    }catch(e){
+        res.status(400).send({Error: e.message})
+    }
+})
 
 module.exports = router

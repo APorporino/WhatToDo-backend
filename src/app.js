@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express')
 
 require('./db/mongoose.js')
@@ -19,5 +20,12 @@ app.use(taskRouter)
 app.use(projectRouter)
 app.use(storyRouter)
 app.use(sprintRouter)
+
+// FOR PRODUCTION USE
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '..', 'frontend/build')))
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'frontend/build', 'index.html'));
+});
 
 module.exports = app

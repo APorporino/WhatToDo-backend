@@ -34,7 +34,9 @@ const projectSchema = new mongoose.Schema({
 })
 //timestamps true will give us createdAt and updatedAt variables
 
+projectSchema.virtual('tasks', {
 
+})
 
 const Project = mongoose.model('Project',projectSchema)
 

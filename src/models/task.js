@@ -27,6 +27,12 @@ const taskSchema = new mongoose.Schema(
       required: true,
       ref: "Story",
     },
+
+    sprint: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Sprint",
+    },
+
   },
   {
     timestamps: true,

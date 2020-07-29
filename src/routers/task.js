@@ -4,7 +4,12 @@ const auth = require('../middleware/auth.js')
 
 const router = new express.Router()
 
-//create a new task
+/**
+ * requires story id, and description
+ * 
+ * create a new task
+ * 
+ */
 router.post('/tasks', auth, async (req,res)=>{
     const task = new Task({
         ...req.body,
