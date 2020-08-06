@@ -15,6 +15,7 @@ router.post('/newuser', async (req,res)=>{
         const token = await user.generateAuthenticationToken()
         res.status(201).send({user,token})
     }catch(e){
+        console.log(e)
         res.status(400).send(e)
     }
 })
@@ -36,7 +37,6 @@ router.post('/users/login', async (req,res)=>{
 //logout
 router.get('/users/logout', auth, async (req,res)=>{
     try{
-
         await req.user.save()
         res.status(200).send()
     }catch(e){
@@ -45,7 +45,7 @@ router.get('/users/logout', auth, async (req,res)=>{
 })
 
 //get my profile
-router.post('/currentUser', auth, async (req,res)=>{
+router.get('/currentUser', auth, async (req,res)=>{
     //req.user is set in auth function in middleware
     res.send(req.user)
 })

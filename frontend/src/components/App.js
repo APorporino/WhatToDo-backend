@@ -7,12 +7,13 @@ import Header from './Header'
 import Login from './Login'
 import Signup from './Signup'
 import Landing from './Landing'
+import Home from './Home'
 import Project from './Project'
 
 class App extends React.Component {
 
     componentDidMount() {
-        this.props.fetchUser()
+        this.props.fetchUser(this.props.auth)
     }
 
     render() {
@@ -22,10 +23,15 @@ class App extends React.Component {
                 <Route path="/" component={Landing} exact/>
                 <Route path="/login" component={Login} exact/>
                 <Route path="/signup" component={Signup} exact/>
-                <Route path="/projects" component={Project} exact/>
+                <Route path="/home" component={Home} exact/>
+                <Route path="/project/:id" component={Project} exact/>
             </BrowserRouter>
         )
     }
 }
 
-export default connect(null,actions)(App)
+const mapStateToProps = ({auth})=>{
+    return {auth: auth.token}
+}
+
+export default connect(mapStateToProps,actions)(App)

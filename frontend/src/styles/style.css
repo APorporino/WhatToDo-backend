@@ -1,7 +1,51 @@
 body {
-    background-color: antiquewhite;
+  background-color: antiquewhite;
 }
 
 .header {
-    background-color: rgba(255, 0, 0, 0.715);
+  background-color: rgba(255, 0, 0, 0.872);
+}
+
+
+.Login {
+  padding: 60px 0;
+}
+
+.Login form {
+  margin: 0 auto;
+  max-width: 320px;
+}
+
+.form-block {
+  background-color: rgb(194, 133, 133);
+  padding: 3px 20px;
+  box-shadow: 15px 15px 20px -2px rgba(0, 0, 0, 0.2);
+}
+
+
+.Signup {
+  padding: 60px 0;
+}
+
+.Signup form {
+  margin: 0 auto;
+  max-width: 320px;
+}
+
+.projects {
+  padding: 60px 0;
+  margin: 0 auto;
+  max-width: 70vw;
+  text-align: center;
+  align-items: center;
+}
+
+.hover:hover{
+  transform: scale(1.03);
+}
+
+.center {
+  text-align: center;
+  align-items: center;
+  margin: auto;
 }

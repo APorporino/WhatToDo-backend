@@ -9,19 +9,20 @@ class Header extends React.Component {
         switch (this.props.auth) {
             case null:
                 return <div>Null</div>
+
             case false:
                 return (
                     <Nav className="ml-auto">
                         <Nav.Link href="/login">Login</Nav.Link>
-                        <Nav.Link href="#signup">Signup</Nav.Link>
+                        <Nav.Link href="/signup">Signup</Nav.Link>
                     </Nav>
                 )
-
+            
             default: 
                 return (
                     <Nav className="ml-auto">
                         <Nav.Link onClick={this.props.logout}>Logout</Nav.Link>
-                        <Nav.Link href="/">{this.props.auth.user.email}</Nav.Link>
+                        <Nav.Link href="">{this.props.auth.user.email}</Nav.Link>
                     </Nav>
                 )
         }
@@ -32,18 +33,16 @@ class Header extends React.Component {
         return (
             <div>
                 <Navbar className="header">
-                    <Navbar.Brand href="#home">WhatToDo</Navbar.Brand>
-                    
+                    <Navbar.Brand href="/">WhatToDo</Navbar.Brand>
                     {this.renderRightSide()}
-
                 </Navbar>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({auth})=>{
-    return {auth}
+const mapStateToProps = (state)=>{
+    return {auth: state.auth}
 }
 
 export default connect(mapStateToProps, actions)(Header)

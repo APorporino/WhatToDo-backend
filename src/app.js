@@ -14,7 +14,6 @@ const app = express();
 //automatically parses incoming json
 app.use(express.json())
 
-
 app.use(userRouter)
 app.use(taskRouter)
 app.use(projectRouter)

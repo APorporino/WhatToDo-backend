@@ -1,11 +1,25 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-const Landing = (prop)=>{
-    return (
-        <div>
-            Landing
-        </div>
-    )
+class Landing extends React.Component {
+
+    render() {
+        if (this.props.auth){
+            console.log("REDIRECT")
+            return <Redirect to="/home" />
+        } 
+
+        return (
+            <div>
+                Landing
+            </div>
+        )
+    }
 }
 
-export default Landing
+const mapStateToProps = ({auth})=>{
+    return {auth}
+}
+
+export default connect(mapStateToProps)(Landing)
