@@ -1,65 +1,41 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {Button, Toast, Container, Row, Col} from 'react-bootstrap'
-import * as actions from '../actions/index'
+import {Button} from 'react-bootstrap'
+import actions from '../actions/index'
 import {getProjects as projectAPI}  from '../api/user'
+import ProjectList from './project/ProjectList'
+import history from '../history'
 
 class Home extends React.Component {
+    state = {projects: []}
 
-    getProjects(token){
-        console.log(projectAPI)
+    async getProjects (token){
+        const projects = await projectAPI(token)
+        this.setState({projects})
     }
 
-    renderProjects() {
-
-        //call getProjects for the current user
-        return (
-            <div>
-                <Container>
-                    <Row>
-                        <Col md={6} xs={12}>
-                            <Toast onClick={()=> console.log("j")} className="hover center">
-                                <Toast.Header>
-                                <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                                <strong className="mr-auto">WhatToDo</strong>
-                                <small>just now</small>
-                                </Toast.Header>
-                                <Toast.Body>See? Just like this.</Toast.Body>
-                            </Toast>
-                        </Col>
-                        <Col md={6} xs={12}>
-                        <Toast className="hover center">
-                            <Toast.Header>
-                            <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                            <strong className="mr-auto">WhoWon</strong>
-                            <small>2 seconds ago</small>
-                            </Toast.Header>
-                            <Toast.Body>Heads up, toasts will stack automatically</Toast.Body>
-                        </Toast>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        )            
+    componentDidMount () {
+        if (this.props.auth){
+            this.getProjects(this.props.auth.token)
+        }
     }
+
+    
 
     render() {
-
         if (!this.props.auth){
-            console.log("REDIRECT")
             return <Redirect to="/" />
         }
-
         return (
             <div className="projects">
-                <Button bssize="small" type="submit" onClick={() => this.getProjects(`${this.props.auth.token}`)}>Create New Project</Button>
+                <Button bssize="small" type="submit" onClick={() => history.push('/new/project')}>Create New Project</Button>
                 <br></br>
                 <br></br>
                 <h1>Current Projects</h1>
                 <hr></hr>
                 <br></br>
-                {this.renderProjects()}
+                <ProjectList projects={this.state.projects} />
             </div>
         )
     }

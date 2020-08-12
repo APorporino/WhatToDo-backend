@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Navbar, Nav} from 'react-bootstrap'
-import * as actions from '../actions/index'
+import actions from '../actions/index'
 
 class Header extends React.Component {
 

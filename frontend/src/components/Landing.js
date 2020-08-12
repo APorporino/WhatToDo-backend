@@ -6,7 +6,6 @@ class Landing extends React.Component {
 
     render() {
         if (this.props.auth){
-            console.log("REDIRECT")
             return <Redirect to="/home" />
         } 
 

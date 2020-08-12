@@ -22,6 +22,14 @@ backlogSchema.virtual('stories', {
     justOne: false,
 })
 
+//deletes stories of backlog before deleting backlog
+backlogSchema.pre("remove", async function (next) {
+    await Story.deleteMany({
+        backlog: this._id
+    })
+    next()
+})
+
 
 backlogSchema.methods.getAllTasks = async function(){
     var tasks = []

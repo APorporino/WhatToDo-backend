@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
-import * as actions from '../actions/index'
+import actions from '../actions/index'
 import { Button, FormGroup, FormControl, Alert } from "react-bootstrap";
 
 class Login extends React.Component{
@@ -18,7 +18,7 @@ class Login extends React.Component{
         }
 
         return (
-            <div className="Login">
+            <div className="Form">
               <form onSubmit={this.handleSubmit} className="form-block">
                 <FormGroup controlId="email" bssize="large">
                   <label>Email</label>

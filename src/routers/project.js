@@ -11,6 +11,7 @@ router.post('/project', auth, async (req,res)=>{
     const admin = req.user._id
     const project = new Project({
         name: req.body.name,
+        description: req.body.description,
         members: [admin],
         admins: [admin]
     });
@@ -24,6 +25,22 @@ router.post('/project', auth, async (req,res)=>{
         res.status(201).send(project)
     }catch(e){
         res.status(404).send({Error: e.message})
+    }
+})
+
+router.delete('/project', auth, async (req,res)=>{
+    try{
+        const project = await Project.findById(req.body.project_id)
+        if (!project){
+            throw new Error("That project does not exist")
+        }
+        if (!project.admins.includes(req.user._id)){
+            throw new Error("You must be an admin to add someone to the project")
+        }
+        project.remove()
+        res.status(200).send(project)
+    }catch(e){
+        res.status(400).send({Error: e.message})
     }
 })
 

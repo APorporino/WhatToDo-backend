@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 
+const Task = require("./task.js");
+
 const storySchema = new mongoose.Schema({
     name: {
         type: String,
@@ -45,6 +47,13 @@ storySchema.virtual('tasks',{
     foreignField: 'story',
     justOne: false,
 })
+
+storySchema.pre("remove", async function (next){
+    await Task.deleteMany({
+        story: this._id
+    })
+})
+
 
 const Story = mongoose.model("Story", storySchema)
 

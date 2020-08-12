@@ -1,15 +1,15 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Form, Button } from 'react-bootstrap'
-import * as actions from '../actions/index'
+import { Form, Button, Alert } from 'react-bootstrap'
+import actions from '../actions/index'
 
 class Signup extends React.Component {
     state = {
-        firstName: "a",
-        lastName: "a",
-        email: "sa@gmail.com",
-        password: "jdioejodkeodk",
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
     }
 
     handleSubmit = (event)=>{
@@ -23,7 +23,7 @@ class Signup extends React.Component {
         }
 
         return (
-            <div className="Signup">
+            <div className="Form">
                 <Form onSubmit={this.handleSubmit} className="form-block">
 
                   <Form.Group controlId="formBasicFirstName">
@@ -72,7 +72,8 @@ class Signup extends React.Component {
                   <Button block bssize="large" type="submit">
                     Submit
                   </Button>
-                  <p style={{textAlign: 'center', paddingTop: '10px'}}>{this.props.error}</p>
+                  <div style={{textAlign: 'center', paddingTop: '10px'}}>{this.props.error ? <Alert key={2} variant='danger'>
+                {this.props.error}</Alert> : ""}</div>
                 </Form>
             </div>
         )
