@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const LoadingView = (prop)=>{
-    return (
-        <div>
-            LOADING
-        </div>
-    )
-}
+const LoadingView = (prop) => {
+  return <div>LOADING</div>;
+};
 
-export default LoadingView
+export default LoadingView;

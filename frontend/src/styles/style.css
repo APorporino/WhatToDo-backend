@@ -29,7 +29,13 @@ body {
   align-items: center;
 }
 
-.hover:hover{
+.card_view {
+  margin: auto;
+  width: 18rem;
+  margin-bottom: 6%;
+}
+
+.hover:hover {
   transform: scale(1.03);
 }
 
@@ -37,4 +43,8 @@ body {
   text-align: center;
   align-items: center;
   margin: auto;
+}
+
+.button_center {
+  margin-left: 40%;
 }

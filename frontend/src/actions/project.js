@@ -16,3 +16,18 @@ export const createProject = (token, name, description) => async(dispatch) =>{
         dispatch({type: ERROR, payload: e.message})
     }
 }
+
+export const chooseProject = (project) => async(dispatch,getState) => {
+    try {
+        const state = getState();
+        const members = await axios.get(`/project/${project._id}/members`,{
+            headers: {
+                'Authorization': `Bearer ${state.auth.token}`
+            }
+        })
+        project.members = members.data
+        dispatch({type: CHOSEN_PROJECT, payload: project})
+    }catch(e){
+        dispatch({type: ERROR, payload: e.message})
+    }
+}

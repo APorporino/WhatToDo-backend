@@ -1,64 +1,66 @@
-const mongoose = require('mongoose')
-const validator = require('validator')
+const mongoose = require("mongoose");
+const validator = require("validator");
 
 const Backlog = require("./backlog.js");
 const Sprint = require("./sprint.js");
 
-const projectSchema = new mongoose.Schema({
+const projectSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
 
     description: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
 
     dateEnded: {
-        type: Date,
+      type: Date,
     },
 
-    admins: [{
+    admins: [
+      {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
-    }],
+        ref: "User",
+      },
+    ],
 
-    members: [{
+    members: [
+      {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
-    }],
+        ref: "User",
+      },
+    ],
 
     backlog: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: false,
-        ref: 'Backlog'
-    }
-
-},{
-    timestamps: true
-})
+      type: mongoose.Schema.Types.ObjectId,
+      required: false,
+      ref: "Backlog",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 //timestamps true will give us createdAt and updatedAt variables
-
 
 //deletes backlog and sprints of a project before deleting a project
 projectSchema.pre("remove", async function (next) {
-    await Backlog.deleteMany({
-        project: this._id
-    })
-    await Sprint.deleteMany({
-        project: this._id
-    })
-    next()
-})
+  await Backlog.deleteMany({
+    project: this._id,
+  });
+  await Sprint.deleteMany({
+    project: this._id,
+  });
+  next();
+});
 
+projectSchema.virtual("tasks", {});
 
-projectSchema.virtual('tasks', {
+const Project = mongoose.model("Project", projectSchema);
 
-})
-
-const Project = mongoose.model('Project',projectSchema)
-
-module.exports = Project
+module.exports = Project;
