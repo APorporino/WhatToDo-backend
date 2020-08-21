@@ -8,13 +8,13 @@ import { persistStore, persistReducer } from "redux-persist";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import storage from "redux-persist/lib/storage";
 import "./styles/style.css";
+import "./styles/minStyle.css";
 import App from "./components/App";
 import LoadingView from "./components/LoadingView";
 
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["auth"],
 };
 // this is to persist redux state
 const pReducer = persistReducer(persistConfig, reducers);

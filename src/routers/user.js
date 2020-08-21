@@ -70,6 +70,18 @@ router.patch("/users/me", auth, async (req, res) => {
   }
 });
 
+router.get("/user/:email", async (req, res) => {
+  console.log(req.params.email);
+  try {
+    const user = await User.find({
+      email: { $regex: `${req.params.email}`, $options: "is" },
+    });
+    res.send(user);
+  } catch (e) {
+    res.status(400).send({ error: e.message });
+  }
+});
+
 //delete your account. NEED CASCADE DELETE
 // router.delete('/users/me', auth, async (req,res)=>{
 //     try{

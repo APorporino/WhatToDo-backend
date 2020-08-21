@@ -1,7 +1,7 @@
 import React from "react";
 
-const LoadingView = (prop) => {
-  return <div>LOADING</div>;
+const LoadingView = () => {
+  return <div>Loading</div>;
 };
 
 export default LoadingView;

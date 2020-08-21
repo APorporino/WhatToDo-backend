@@ -1,0 +1,9 @@
+@media (max-width: 767px) {
+    .member_list {
+        max-width: 50vw;
+    }
+
+    .search_bar {
+        max-width: 50vw;
+    }
+}

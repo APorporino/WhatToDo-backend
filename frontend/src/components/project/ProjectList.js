@@ -22,11 +22,6 @@ class ProjectList extends React.Component {
             <span onClick={() => this.projectSelected(index)}>
               <Toast className="hover center">
                 <Toast.Header>
-                  <img
-                    src="holder.js/20x20?text=%20"
-                    className="rounded mr-2"
-                    alt=""
-                  />
                   <strong className="mr-auto">{project.name}</strong>
                   <small>{project.createdAt.slice(0, 10)}</small>
                 </Toast.Header>

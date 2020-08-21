@@ -1,6 +1,5 @@
 import axios from "axios";
-import { FETCH_USER } from "./types";
-import { ERROR } from "./types";
+import { FETCH_USER, ERROR } from "./types";
 
 // RECALL: if an arrow function is not followed by a open curly brace,
 // it means it is returning the code that follows

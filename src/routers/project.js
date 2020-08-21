@@ -114,4 +114,18 @@ router.get("/project/:id/members", auth, async (req, res) => {
   }
 });
 
+router.get("/project/:id/admins", auth, async (req, res) => {
+  let admins = [];
+  try {
+    const project = await Project.findById(req.params.id);
+    for (id of project.admins) {
+      const user = await User.findById(id);
+      admins.push(user.email);
+    }
+    res.send(admins);
+  } catch (e) {
+    res.status(400).send({ Error: e.message });
+  }
+});
+
 module.exports = router;

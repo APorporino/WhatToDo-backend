@@ -22,6 +22,11 @@ const taskSchema = new mongoose.Schema(
       default: "dev",
     },
 
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+
     story: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

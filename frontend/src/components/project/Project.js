@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import actions from "../../actions/index";
 import { Card, Button, Container, Col, Row } from "react-bootstrap";
 
-import MemberView from "./MemberView";
-import SprintView from "./SprintView";
-import BacklogView from "./BacklogView";
+import MemberView from "./views/MemberView";
+import SprintView from "./views/SprintView";
+import BacklogView from "./views/BacklogView";
 
 class Project extends React.Component {
   state = { view: "" };
@@ -60,7 +60,6 @@ class Project extends React.Component {
                     </Card.Text>
                     <Button
                       onClick={() => this.projectSelected(this.MEMBER_VIEW)}
-                      className="button_center"
                       variant="dark"
                     >
                       Go
@@ -79,7 +78,6 @@ class Project extends React.Component {
                     </Card.Text>
                     <Button
                       onClick={() => this.projectSelected(this.BACKLOG_VIEW)}
-                      className="button_center"
                       variant="dark"
                     >
                       Go
@@ -99,7 +97,6 @@ class Project extends React.Component {
                     </Card.Text>
                     <Button
                       onClick={() => this.projectSelected(this.SPRINT_VIEW)}
-                      className="button_center"
                       variant="dark"
                     >
                       Go
@@ -118,15 +115,30 @@ class Project extends React.Component {
       return <Redirect to="/" />;
     }
     if (!this.props.project) {
-      return <div>Loading../</div>;
+      return <div>This project does not exist or you are not a member.</div>;
     }
 
     return (
       <div>
-        <h1>
-          {this.props.project.name}{" "}
+        <Container className="project_name_header">
+          <Row className="justify-content-md-center">
+            <Col md={4} xs={4} className="">
+              {this.state.view ? (
+                <Button onClick={() => this.projectSelected("")}>Back</Button>
+              ) : null}
+            </Col>
+
+            <Col md={4} xs={4} className="project_name">
+              <h1>{this.props.project.name}</h1>
+            </Col>
+            <Col md={4} xs={4}></Col>
+          </Row>
+        </Container>
+
+        <h3 className="project_name">
           {this.state.view ? `(${this.state.view})` : ""}
-        </h1>
+        </h3>
+        <hr></hr>
         {this.renderContent()}
       </div>
     );

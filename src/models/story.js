@@ -36,6 +36,11 @@ const storySchema = new mongoose.Schema(
       required: false,
       ref: "Sprint",
     },
+
+    completed: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

@@ -10,6 +10,7 @@ import Landing from "./Landing";
 import Home from "./Home";
 import Project from "./project/Project";
 import NewProject from "./project/NewProject";
+import NewStory from "./project/views/NewStory";
 
 class App extends React.Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ class App extends React.Component {
         <Route path="/home" component={Home} exact />
         <Route path="/projectPage/:id" component={Project} exact />
         <Route path="/new/project" component={NewProject} exact />
+        <Route path="/new/story" component={NewStory} exact />
       </BrowserRouter>
     );
   }

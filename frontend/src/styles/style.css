@@ -3,7 +3,8 @@ body {
 }
 
 .header {
-  background-color: rgba(255, 0, 0, 0.872);
+  background-color: rgba(242, 216, 216, 0.872);
+  width: 100vw;
 }
 
 .form-block {
@@ -29,10 +30,36 @@ body {
   align-items: center;
 }
 
+.project_name {
+  text-align: center;
+}
+
+.member_page {
+  text-align: center;
+  margin: 1%;
+}
+
+.project_name_header {
+  margin-top: 2%;
+}
+
 .card_view {
   margin: auto;
   width: 18rem;
   margin-bottom: 6%;
+  text-align: center;
+}
+
+.member_list {
+  max-width: 30vw;
+  background-color: aqua;
+  text-align: left;
+  margin: auto;
+}
+
+.search_bar {
+  max-width: 30vw;
+  margin: auto;
 }
 
 .hover:hover {
@@ -45,6 +72,8 @@ body {
   margin: auto;
 }
 
-.button_center {
-  margin-left: 40%;
+.newStoryButton {
+  width: 50vw;
+  margin: auto;
+  margin-top: 20px;
 }
