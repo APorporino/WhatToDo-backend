@@ -1,9 +1,9 @@
 body {
-  background-color: antiquewhite;
+  background-color: rgb(255, 221, 177);
 }
 
 .header {
-  background-color: rgba(242, 216, 216, 0.872);
+  background-color: rgba(250, 184, 114, 0.893);
   width: 100vw;
 }
 

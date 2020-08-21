@@ -23,12 +23,12 @@ class BacklogView extends React.Component {
     return this.state.stories.map((story, index) => {
       return (
         <Row key={index}>
-          <Col xs={11}>
+          <Col lg={11} md={9} xs={8}>
             <ListGroup.Item>
               {story.name}:{story.description}
             </ListGroup.Item>
           </Col>
-          <Col xs={1}>
+          <Col lg={1} md={3} xs={4}>
             <Button variant="danger">Remove</Button>
           </Col>
         </Row>
