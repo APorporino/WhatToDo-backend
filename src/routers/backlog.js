@@ -5,6 +5,7 @@ const Backlog = require("../models/backlog");
 const router = new express.Router();
 
 // provide: id of backlog and get all stories with tasks attached as response
+// This is the best method offered, better than any individual task or story route
 router.get(
   "/backlog/:id/stories/:taskLimit/:taskSkip/:storyLimit/:storySkip",
   auth,

@@ -57,6 +57,9 @@ router.patch("/project", auth, async (req, res) => {
     if (userToBeAdded.length === 0) {
       throw new Error("That user does not exist");
     }
+    if (!project) {
+      throw new Error("Project does not exist");
+    }
     if (!project.admins.includes(req.user._id)) {
       throw new Error("You must be an admin to add someone to the project");
     }

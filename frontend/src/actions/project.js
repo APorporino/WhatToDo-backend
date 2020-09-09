@@ -15,6 +15,7 @@ export const createProject = (token, name, description) => async (dispatch) => {
         },
       }
     );
+    console.log(res);
     dispatch({ type: CHOSEN_PROJECT, payload: res.data });
   } catch (e) {
     dispatch({ type: ERROR, payload: e.message });

@@ -3,10 +3,10 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Spinner, ListGroup, Row, Col, Form, Button } from "react-bootstrap";
 import actions from "../../../actions/index";
-import { findUserByEmail } from "../../../api/user";
+import { findUserByEmail, addMember } from "../../../api/user";
 
 class MemberView extends React.Component {
-  state = { email: "", users: [] };
+  state = { email: "", users: [], members: [], admins: [] };
 
   timeoutId = null;
 
@@ -33,7 +33,6 @@ class MemberView extends React.Component {
   }
 
   renderListUsers(list) {
-    console.log("LIST: ", list);
     if (list.length === 0) {
       return <div>No users found</div>;
     }
@@ -41,7 +40,12 @@ class MemberView extends React.Component {
       return (
         <ListGroup.Item variant="success" key={index}>
           {element.email}
-          <Button variant="primary" type="submit" style={{ float: "right" }}>
+          <Button
+            onClick={(e) => this.handleAdd(e, element.email)}
+            variant="primary"
+            type="submit"
+            style={{ float: "right" }}
+          >
             Add
           </Button>
         </ListGroup.Item>
@@ -49,6 +53,21 @@ class MemberView extends React.Component {
     });
   }
 
+  async handleAdd(e, email) {
+    e.preventDefault();
+    try {
+      await addMember(this.props.auth.token, email, this.props.project._id);
+      await this.props.chooseProject(this.props.project);
+      this.setState({
+        members: this.props.project.members,
+        admins: this.props.project.admins,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  // this handles the search to add a user by regex expression
   async findUser() {
     const users = await findUserByEmail(
       this.props.auth.token,
@@ -59,6 +78,13 @@ class MemberView extends React.Component {
     } else {
       this.setState({ users: [] });
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      members: this.props.project.members,
+      admins: this.props.project.admins,
+    });
   }
 
   render() {
@@ -79,13 +105,13 @@ class MemberView extends React.Component {
           <Col md={4} xs={12}>
             <h3>Members</h3>
             <ListGroup className="member_list">
-              {this.renderListGroup(this.props.project.members)}
+              {this.renderListGroup(this.state.members)}
             </ListGroup>
           </Col>
           <Col md={4} xs={12}>
             <h3>Admins</h3>
             <ListGroup className="member_list">
-              {this.renderListGroup(this.props.project.admins)}
+              {this.renderListGroup(this.state.admins)}
             </ListGroup>
           </Col>
           <Col md={4} xs={12}>

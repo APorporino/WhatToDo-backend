@@ -21,4 +21,14 @@ router.post("/story", auth, async (req, res) => {
   }
 });
 
+router.delete("/story/:id", auth, async (req, res) => {
+  try {
+    const story = await Story.findById(req.params.id);
+    story.remove();
+    res.status(201).send("Succesfully deleted");
+  } catch (e) {
+    res.status(400).send({ Error: e.message });
+  }
+});
+
 module.exports = router;

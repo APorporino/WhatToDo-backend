@@ -1,18 +1,5 @@
 import axios from "axios";
 
-export const getBacklogStories = async (backlogID, access_token) => {
-  try {
-    const res = await axios.get(`/backlog/${backlogID}/stories/0/0/0/0`, {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    return e.message;
-  }
-};
-
 export const createStory = async (token, backlog, name, description) => {
   try {
     const res = await axios.post(
@@ -30,6 +17,41 @@ export const createStory = async (token, backlog, name, description) => {
     );
     return res.data;
   } catch (e) {
-    return "error";
+    return e.message;
+  }
+};
+
+export const deleteStory = async (token, storyId) => {
+  try {
+    const res = await axios.delete(`/story/${storyId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    return e.message;
+  }
+};
+
+export const createTask = async (token, storyId, description, status, tag) => {
+  try {
+    const res = await axios.post(
+      "/tasks",
+      {
+        story: storyId,
+        description,
+        status,
+        tag,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data;
+  } catch (e) {
+    return e.message;
   }
 };

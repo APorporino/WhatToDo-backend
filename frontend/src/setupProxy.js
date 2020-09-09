@@ -10,6 +10,7 @@ module.exports = function (app) {
       "/user",
       "/backlog/*",
       "/story",
+      "/tasks",
     ],
     createProxyMiddleware({
       target: "http://localhost:5000",

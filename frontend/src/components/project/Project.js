@@ -38,7 +38,6 @@ class Project extends React.Component {
 
   // 3 views MemberView, SprintView, BacklogView
   renderContent() {
-    console.log("here");
     switch (this.state.view) {
       case this.SPRINT_VIEW:
         return <SprintView />;

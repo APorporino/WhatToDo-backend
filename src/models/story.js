@@ -59,6 +59,7 @@ storySchema.pre("remove", async function (next) {
   await Task.deleteMany({
     story: this._id,
   });
+  next();
 });
 
 const Story = mongoose.model("Story", storySchema);

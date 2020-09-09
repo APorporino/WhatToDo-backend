@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import actions from "../../actions/index";
 import { Form, Button, Alert } from "react-bootstrap";
+import history from "../../history";
 
 class NewProject extends React.Component {
   state = { name: "", description: "" };
@@ -13,17 +14,18 @@ class NewProject extends React.Component {
       this.state.name,
       this.state.description
     );
-    event.preventDefault();
+    history.push(`/home`);
   };
 
   render() {
     if (!this.props.auth) {
       return <Redirect to="/" />;
     }
-    if (this.props.project) {
-      const redirect = `/projectPage/${this.props.project.name}`;
-      return <Redirect to={redirect} />;
-    }
+
+    // if (this.props.project) {
+    //   const redirect = `/projectPage/${this.props.project.name}`;
+    //   return <Redirect to={redirect} />;
+    // }
 
     return (
       <div className="Form">
