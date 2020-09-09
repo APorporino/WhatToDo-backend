@@ -1,6 +1,6 @@
 import { STORY } from "../actions/types";
 
-const storyReducer = (state = null, action) => {
+const storyReducer = (state = [], action) => {
   switch (action.type) {
     case STORY:
       return action.payload;
