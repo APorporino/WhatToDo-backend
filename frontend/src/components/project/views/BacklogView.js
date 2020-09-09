@@ -28,6 +28,9 @@ class BacklogView extends React.Component {
   };
 
   renderStories() {
+    if (this.props.story == null) {
+      return null;
+    }
     return this.props.story.map((story, index) => {
       return (
         <div key={index} style={{ margin: "2%" }}>
