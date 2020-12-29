@@ -25,7 +25,7 @@ class NewProject extends React.Component {
     }
 
     return (
-      <div className="Form">
+      <div className="taskForm">
         <h1 style={{ textAlign: "center" }}>
           New task for story: {this.props.story.name}
         </h1>
@@ -34,7 +34,7 @@ class NewProject extends React.Component {
             <Form.Label>Description of Task</Form.Label>
             <Form.Control
               type="name"
-              placeholder="Enter name of story"
+              placeholder="Enter name of task"
               value={this.state.description}
               onChange={(e) =>
                 this.setState({

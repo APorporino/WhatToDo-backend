@@ -123,7 +123,12 @@ class Project extends React.Component {
           <Row className="justify-content-md-center">
             <Col md={4} xs={4} className="">
               {this.state.view ? (
-                <Button onClick={() => this.projectSelected("")}>Back</Button>
+                <Button
+                  variant="light"
+                  onClick={() => this.projectSelected("")}
+                >
+                  Back
+                </Button>
               ) : null}
             </Col>
 

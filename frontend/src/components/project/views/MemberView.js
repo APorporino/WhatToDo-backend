@@ -25,7 +25,7 @@ class MemberView extends React.Component {
   renderListGroup(list) {
     return list.map((element, index) => {
       return (
-        <ListGroup.Item variant="warning" key={index}>
+        <ListGroup.Item variant="light" key={index}>
           {element}
         </ListGroup.Item>
       );
@@ -38,11 +38,11 @@ class MemberView extends React.Component {
     }
     return list.map((element, index) => {
       return (
-        <ListGroup.Item variant="success" key={index}>
+        <ListGroup.Item variant="dark" key={index}>
           {element.email}
           <Button
             onClick={(e) => this.handleAdd(e, element.email)}
-            variant="primary"
+            variant="success"
             type="submit"
             style={{ float: "right" }}
           >

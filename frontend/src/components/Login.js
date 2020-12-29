@@ -18,7 +18,7 @@ class Login extends React.Component {
     }
 
     return (
-      <div className="Form">
+      <div className="SmallForm">
         <form onSubmit={this.handleSubmit} className="form-block">
           <FormGroup controlId="email" bssize="large">
             <label>Email</label>

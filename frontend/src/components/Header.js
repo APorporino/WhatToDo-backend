@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import actions from "../actions/index";
 
 class Header extends React.Component {
@@ -33,6 +33,12 @@ class Header extends React.Component {
       <div>
         <Navbar className="header">
           <Navbar.Brand href="/">WhatToDo</Navbar.Brand>
+          <NavDropdown className="black" title="Color Theme" id="nav-dropdown">
+            <NavDropdown.Item eventKey="Blue">Blue</NavDropdown.Item>
+            <NavDropdown.Item eventKey="Orange">Orange</NavDropdown.Item>
+            <NavDropdown.Item eventKey="Grey">Grey</NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.4">Red</NavDropdown.Item>
+          </NavDropdown>
           {this.renderRightSide()}
         </Navbar>
       </div>

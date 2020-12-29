@@ -9,8 +9,8 @@ const storySchema = new mongoose.Schema(
       type: String,
       required: true,
       validate(name) {
-        if (name.length > 50) {
-          throw new Error("Must be less than 50 characters");
+        if (name.length > 200) {
+          throw new Error("Must be less than 200 characters");
         }
       },
     },

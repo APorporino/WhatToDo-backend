@@ -28,6 +28,7 @@ class Home extends React.Component {
     return (
       <div className="projects">
         <Button
+          variant="light"
           bssize="small"
           type="submit"
           onClick={() => history.push("/new/project")}

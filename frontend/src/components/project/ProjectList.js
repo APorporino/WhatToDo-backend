@@ -20,7 +20,7 @@ class ProjectList extends React.Component {
             style={{ textDecoration: "none" }}
           >
             <span onClick={() => this.projectSelected(index)}>
-              <Toast className="hover center">
+              <Toast className="hover center project_list">
                 <Toast.Header>
                   <strong className="mr-auto">{project.name}</strong>
                   <small>{project.createdAt.slice(0, 10)}</small>
@@ -28,6 +28,7 @@ class ProjectList extends React.Component {
                 <Toast.Body>{project.description}</Toast.Body>
               </Toast>
             </span>
+            <br></br>
           </Link>
         </Col>
       );

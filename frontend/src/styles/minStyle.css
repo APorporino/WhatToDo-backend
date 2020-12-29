@@ -1,3 +1,12 @@
+@media (max-width: 967px) {
+
+    .secondaryText {
+        margin: 10vh 10vh;
+    }
+}
+
+
+
 @media (max-width: 767px) {
     .member_list {
         max-width: 50vw;
@@ -9,6 +18,10 @@
 
     .header {
         font-size: 11px;
+    }
+
+    .secondaryText {
+        margin: 10vh 10vh;
     }
 }
 
@@ -23,5 +36,9 @@
 
     .header {
         font-size: 8px;
+    }
+
+    .secondaryText {
+        margin: 10vh 1vh;
     }
 }

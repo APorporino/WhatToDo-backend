@@ -24,7 +24,7 @@ class NewProject extends React.Component {
     }
 
     return (
-      <div className="Form">
+      <div className="SmallForm">
         <Form onSubmit={this.handleSubmit} className="form-block">
           <Form.Group controlId="formName">
             <Form.Label>Name of Story</Form.Label>

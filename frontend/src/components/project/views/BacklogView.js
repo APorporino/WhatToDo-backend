@@ -35,23 +35,27 @@ class BacklogView extends React.Component {
       return (
         <div key={index} style={{ margin: "2%" }}>
           <Row>
-            <Col lg={10} md={6} xs={6}>
+            <Col lg={9} md={12} xs={12}>
               <ListGroup.Item style={{ verticalAlign: "middle" }}>
                 {story.name}:{story.description}
-                <Button
-                  variant="info"
-                  onClick={() => this.handleViewTask(story)}
-                  style={{
-                    float: "right",
-                    marginBottom: "1%",
-                    verticalAlign: "middle",
-                  }}
-                >
-                  View Tasks
-                </Button>
               </ListGroup.Item>
             </Col>
-            <Col lg={1} md={3} xs={3}>
+
+            <Col lg={1} md={4} xs={4}>
+              <Button
+                variant="secondary"
+                onClick={() => this.handleViewTask(story)}
+                style={{
+                  float: "right",
+                  marginBottom: "10%",
+                  verticalAlign: "middle",
+                }}
+              >
+                View Tasks
+              </Button>
+            </Col>
+
+            <Col lg={1} md={4} xs={4}>
               <Button
                 variant="success"
                 onClick={() => this.setState({ newTask: story })}
@@ -59,7 +63,8 @@ class BacklogView extends React.Component {
                 New Task
               </Button>
             </Col>
-            <Col lg={1} md={3} xs={3}>
+
+            <Col lg={1} md={4} xs={4}>
               <Button
                 variant="danger"
                 onClick={async () => {
@@ -133,7 +138,7 @@ class BacklogView extends React.Component {
           </ListGroup>
         </Container>
         <Button
-          className="newStoryButton"
+          className="newStoryButton margin"
           variant="success"
           onClick={this.handleClick}
         >

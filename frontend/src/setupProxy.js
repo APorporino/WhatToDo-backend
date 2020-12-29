@@ -10,6 +10,7 @@ module.exports = function (app) {
       "/user",
       "/backlog/*",
       "/story",
+      "/story/*",
       "/tasks",
     ],
     createProxyMiddleware({
