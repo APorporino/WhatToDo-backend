@@ -26,7 +26,7 @@ class AddStory extends React.Component {
   }
 
   addStory(s) {
-    addStoryToSprint(this.props.auth.token, this.props.sprint, s._id);
+    addStoryToSprint(this.props.auth.token, this.props.sprint._id, s._id);
   }
 
   stories() {
@@ -63,8 +63,8 @@ class AddStory extends React.Component {
   }
 }
 
-const mapStateToProps = ({ auth, sprint, story }) => {
-  return { auth, sprint, story };
+const mapStateToProps = ({ auth, story }) => {
+  return { auth, story };
 };
 
 export default connect(mapStateToProps)(AddStory);

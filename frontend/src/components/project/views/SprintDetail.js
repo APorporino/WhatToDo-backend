@@ -145,7 +145,7 @@ class SprintDetail extends React.Component {
       return (
         <div>
           {this.renderChoice()}
-          <AddStory />
+          <AddStory sprint={this.props.sprint} />
           <div className="center">
             <Button
               className="newStoryButton margin"
