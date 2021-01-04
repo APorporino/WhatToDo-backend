@@ -1,6 +1,9 @@
 body {
   background-color: #9aceff;
   overflow-x: hidden;
+  /* background-image: url("../images/todo.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
 }
 
 .header {
@@ -112,7 +115,7 @@ body {
 
 .mainText {
   font-family: 'Open Sans';
-  margin-top: 30vh;
+  
 }
 
 .mainText h2 {
@@ -122,14 +125,40 @@ body {
 .mainBox {
   border: 1px solid black;
   height: 94vh;
+  display: block;
 }
 
 .secondaryText {
   font-family: 'Open Sans';
-  margin: 10vh 45vh;
+  margin: 10vh 10vh;
   font-size: larger;
 }
 
 .margin {
   margin: 5vw;
+}
+
+.overall {
+  margin: 10vw 30vw;
+  box-shadow: 15px 15px 20px -2px rgba(0, 0, 0, 0.2);
+  background-color: #dbe4fb;
+  opacity: .85;
+  padding: 1vw;
+}
+
+.overall2 {
+  box-shadow: 15px 15px 20px -2px rgba(0, 0, 0, 0.2);
+  background-color: #dbe4fb;
+  opacity: .85;
+  padding: 3vw;
+}
+
+.sprintDetail {
+  margin: auto;
+  width: 50vw;
+  padding: 1vw;
+  text-align: center;
+  border: 1px solid black;
+  font-size: large;
+  background-color: #dfe7ff;
 }

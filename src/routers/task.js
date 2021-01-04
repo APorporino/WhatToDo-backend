@@ -79,24 +79,21 @@ router.patch("/tasks/:id", auth, async (req, res) => {
   try {
     const task = await Task.findOne({
       _id: req.params.id,
-      owner: req.user._id,
     });
 
     if (!task) {
       return res.status(404).send();
     }
+    console.log(task);
 
     const updateFields = Object.keys(req.body);
     updateFields.forEach((update) => {
       task[update] = req.body[update];
     });
     await task.save();
-
-    //const task = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
-
     res.send(task);
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send("Error: " + e);
   }
 });
 

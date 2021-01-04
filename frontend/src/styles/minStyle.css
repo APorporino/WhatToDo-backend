@@ -3,6 +3,10 @@
     .secondaryText {
         margin: 10vh 10vh;
     }
+
+    .overall {
+        margin: 5vw 25vw;
+    }
 }
 
 
@@ -23,6 +27,10 @@
     .secondaryText {
         margin: 10vh 10vh;
     }
+
+    .overall {
+        margin: 5vw 10vw;
+    }
 }
 
 @media (max-width: 366px) {
@@ -40,5 +48,9 @@
 
     .secondaryText {
         margin: 10vh 1vh;
+    }
+
+    .overall {
+        margin: 0vw 0vw;
     }
 }

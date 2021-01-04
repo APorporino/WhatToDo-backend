@@ -61,6 +61,12 @@ projectSchema.pre("remove", async function (next) {
 
 projectSchema.virtual("tasks", {});
 
+projectSchema.virtual("sprints", {
+  ref: "Sprint",
+  localField: "_id",
+  foreignField: "project",
+});
+
 const Project = mongoose.model("Project", projectSchema);
 
 module.exports = Project;

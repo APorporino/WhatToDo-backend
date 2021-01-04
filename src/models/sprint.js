@@ -34,6 +34,18 @@ sprintSchema.virtual("stories", {
   justOne: false,
 });
 
+sprintSchema.methods.getAllTasks = async function (stories) {
+  var tasks = [];
+
+  for (const story of stories) {
+    await story.populate({ path: "tasks" }).execPopulate();
+    story.tasks.forEach((task) => {
+      tasks.push(task);
+    });
+  }
+  return tasks;
+};
+
 const Sprint = mongoose.model("Sprint", sprintSchema);
 
 module.exports = Sprint;

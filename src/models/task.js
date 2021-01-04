@@ -3,8 +3,8 @@ const validator = require("validator");
 
 const taskSchema = new mongoose.Schema(
   {
-    asignedTo: {
-      type: mongoose.Schema.Types.ObjectId,
+    assignedTo: {
+      type: String,
     },
 
     description: {
@@ -31,11 +31,6 @@ const taskSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Story",
-    },
-
-    sprint: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Sprint",
     },
   },
   {

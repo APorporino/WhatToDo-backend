@@ -120,12 +120,33 @@ router.get("/project/:id/members", auth, async (req, res) => {
 router.get("/project/:id/admins", auth, async (req, res) => {
   let admins = [];
   try {
+    console.log("hee");
     const project = await Project.findById(req.params.id);
     for (id of project.admins) {
       const user = await User.findById(id);
       admins.push(user.email);
     }
     res.send(admins);
+  } catch (e) {
+    res.status(400).send({ Error: e.message });
+  }
+});
+
+/**
+ * Will get all the sprints associated to the project.
+ *
+ * Input: project id
+ * Output: List of sprints
+ */
+router.get("/project/:id/sprints", auth, async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    await project
+      .populate({
+        path: "sprints",
+      })
+      .execPopulate();
+    res.send(project.sprints);
   } catch (e) {
     res.status(400).send({ Error: e.message });
   }

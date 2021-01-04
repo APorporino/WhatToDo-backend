@@ -11,6 +11,7 @@ import Home from "./Home";
 import Project from "./project/Project";
 import NewProject from "./project/NewProject";
 import NewStory from "./project/views/NewStory";
+import NewSprint from "./project/views/NewSprint";
 
 class App extends React.Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends React.Component {
         <Route path="/projectPage/:id" component={Project} exact />
         <Route path="/new/project" component={NewProject} exact />
         <Route path="/new/story" component={NewStory} exact />
+        <Route path="/new/sprint" component={NewSprint} exact />
       </BrowserRouter>
     );
   }
