@@ -15,6 +15,7 @@ class NewProject extends React.Component {
       this.state.name,
       this.state.description
     );
+    localStorage.setItem("PreviousView", "BacklogView");
     history.push(`/projectPage/${this.props.project.name}`);
   };
 

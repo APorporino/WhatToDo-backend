@@ -17,6 +17,7 @@ class NewSprint extends React.Component {
       this.state.endDate,
       this.props.project._id
     );
+    localStorage.setItem("PreviousView", "SprintView");
     history.push(`/projectPage/${this.props.project.name}`);
   };
 

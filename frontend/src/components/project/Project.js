@@ -16,6 +16,11 @@ class Project extends React.Component {
   BACKLOG_VIEW = "BacklogView";
   SPRINT_VIEW = "SprintView";
 
+  componentDidMount() {
+    const view = localStorage.getItem("PreviousView");
+    this.setState({ view });
+  }
+
   projectSelected(view) {
     switch (view) {
       case this.MEMBER_VIEW:
@@ -124,7 +129,10 @@ class Project extends React.Component {
               {this.state.view ? (
                 <Button
                   variant="light"
-                  onClick={() => this.projectSelected("")}
+                  onClick={() => {
+                    localStorage.setItem("PreviousView", "");
+                    this.projectSelected("");
+                  }}
                 >
                   Back
                 </Button>
