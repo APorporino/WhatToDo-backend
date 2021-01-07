@@ -54,7 +54,7 @@ router.get("/tasks", auth, async (req, res) => {
     res.send(req.user.tasks);
   } catch (e) {
     console.log(e);
-    res.status(500).send();
+    res.status(500).send(e);
   }
 });
 
@@ -62,8 +62,6 @@ router.get("/tasks/:id", auth, async (req, res) => {
   //note :variable is how to pass request parameters
 
   try {
-    console.log(req.params.id);
-    console.log(req.user._id);
     const task = await Task.findOne({ _id: req.params.id });
 
     if (task) {
@@ -84,7 +82,6 @@ router.patch("/tasks/:id", auth, async (req, res) => {
     if (!task) {
       return res.status(404).send();
     }
-    console.log(task);
 
     const updateFields = Object.keys(req.body);
     updateFields.forEach((update) => {

@@ -13,6 +13,6 @@ export default combineReducers({
   project: projectReducer,
   story: storyReducer,
   sprint: sprintReducer,
-  task: taskReducer,
+  sprint_task: taskReducer,
   sprint_story: sprint_storyReducer,
 });

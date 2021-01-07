@@ -73,7 +73,7 @@ class Project extends React.Component {
                     <Card.Title>Backlog View</Card.Title>
                     <hr></hr>
                     <Card.Text>
-                      See the backlog and add and remove stories.
+                      See the backlog and add and remove stories and tasks.
                     </Card.Text>
                     <Button
                       onClick={() => this.projectSelected(this.BACKLOG_VIEW)}
@@ -91,8 +91,7 @@ class Project extends React.Component {
                     <Card.Title>Sprint View</Card.Title>
                     <hr></hr>
                     <Card.Text>
-                      See the current and past sprint tasks. Create a new
-                      sprint.
+                      Review old and create new sprints. Change task properties.
                     </Card.Text>
                     <Button
                       onClick={() => this.projectSelected(this.SPRINT_VIEW)}

@@ -16,6 +16,11 @@ export const getBacklogStories = (backlogID, access_token) => async (
   }
 };
 
+/**
+ * Gets all story for sprint.
+ * @param {*} access_token
+ * @param {*} sprintId
+ */
 export const getStoryForSprint = (access_token, sprintId) => async (
   dispatch
 ) => {

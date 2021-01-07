@@ -2,8 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { Table, Container, Button } from "react-bootstrap";
 import { addStoryToSprint } from "../../../api/stories";
+import actions from "../../../actions/index";
 
 class AddStory extends React.Component {
+  componentDidMount() {
+    this.props.getBacklogStories(
+      this.props.project.backlog,
+      this.props.auth.token
+    );
+  }
   renderStories() {
     return (
       <div className="center">
@@ -27,21 +34,21 @@ class AddStory extends React.Component {
 
   addStory(s) {
     addStoryToSprint(this.props.auth.token, this.props.sprint._id, s._id);
+    this.props.getBacklogStories(
+      this.props.project.backlog,
+      this.props.auth.token
+    );
+    this.props.getSprintTasks(this.props.auth.token, this.props.sprint._id);
   }
 
   stories() {
     return this.props.story.map((s, index) => {
-      console.log("H");
-      console.log(this.props.sprint._id);
-      console.log("H");
-      console.log(s._id);
-      console.log("H");
       return (
         <tr key={index}>
           <td>{s.name}</td>
           <td>{s.description}</td>
           <td>
-            {this.props.sprint._id === s._id ? (
+            {s.sprint ? (
               <div>Already Added</div>
             ) : (
               <Button
@@ -63,8 +70,8 @@ class AddStory extends React.Component {
   }
 }
 
-const mapStateToProps = ({ auth, story }) => {
-  return { auth, story };
+const mapStateToProps = ({ auth, story, project }) => {
+  return { auth, story, project };
 };
 
-export default connect(mapStateToProps)(AddStory);
+export default connect(mapStateToProps, actions)(AddStory);

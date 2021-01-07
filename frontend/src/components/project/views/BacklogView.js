@@ -11,7 +11,6 @@ class BacklogView extends React.Component {
   state = { redirect: false, newTask: null };
 
   componentDidMount() {
-    console.log("here");
     this.getStories();
   }
 
@@ -20,8 +19,6 @@ class BacklogView extends React.Component {
       this.props.project.backlog,
       this.props.auth.token
     );
-    console.log("MEEATTTTTT");
-    console.log(this.props);
     if (this.props.story) {
       this.props.story.forEach((story) => {
         story["tasksVisible"] = false;
@@ -118,7 +115,6 @@ class BacklogView extends React.Component {
     this.setState({
       stories: newStories,
     });
-    console.log(this.state.stories);
   };
 
   handleClick = () => {

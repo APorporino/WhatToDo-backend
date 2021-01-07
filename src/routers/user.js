@@ -30,7 +30,6 @@ router.post("/users/login", async (req, res) => {
     const token = await user.generateAuthenticationToken();
     res.status(201).send({ user, token });
   } catch (error) {
-    console.log(req.body.email);
     console.log(error);
     res.status(400).send({ error: error.message });
   }
@@ -71,7 +70,6 @@ router.patch("/users/me", auth, async (req, res) => {
 });
 
 router.get("/user/:email", async (req, res) => {
-  console.log(req.params.email);
   try {
     const user = await User.find({
       email: { $regex: `${req.params.email}`, $options: "is" },

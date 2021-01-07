@@ -1,19 +1,32 @@
-body {
-  background-color: #9aceff;
+:root {
+  --main-color: #9aceff;
+  --secondary-color: #4a69bb;
+}
+
+/* body {
+  background-color: #a8f176fd;
   overflow-x: hidden;
-  /* background-image: url("../images/todo.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed; */
+} */
+
+body {
+  background-color: var(--main-color);
+  overflow-x: hidden;
 }
 
 .header {
-  background-color:#4a69bb;
-  width: 100vw;
+  background-color: var(--secondary-color);
+  width: 100%;
   color: red;
 }
 
+/* .header {
+  background-color: #59b921;
+  width: 100%;
+  color: red;
+} */
+
 .form-block {
-  background-color: rgb(141, 172, 230);
+  background-color:  var(--secondary-color);
   padding: 3px 20px;
   box-shadow: 15px 15px 20px -2px rgba(0, 0, 0, 0.2);
 }
@@ -24,7 +37,7 @@ body {
 
 .SmallForm form {
   margin: 0 auto;
-  max-width: 320px;
+  max-width: 50%;
 }
 
 .Form {
@@ -92,7 +105,7 @@ body {
 }
 
 .project_list {
-  background-color: #7795e7;
+  background-color: var(--secondary-color);
   font-size: 16px;
   color: black;
 }

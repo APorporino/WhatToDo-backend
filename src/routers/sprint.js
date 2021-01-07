@@ -50,7 +50,6 @@ router.post("/sprint/addTask", auth, async (req, res) => {
  */
 router.get("/sprint/getAllStories/:id", auth, async (req, res) => {
   try {
-    console.log(req.params);
     const sprint = await Sprint.findById(req.params.id);
 
     if (!sprint) {
@@ -68,9 +67,9 @@ router.get("/sprint/getAllStories/:id", auth, async (req, res) => {
 /**
  * Will get all tasks associatied with this sprint
  */
-router.get("/sprint/getAllTasks", auth, async (req, res) => {
+router.get("/sprint/getAllTasks/:id", auth, async (req, res) => {
   try {
-    const sprint = await Sprint.findById(req.body.sprintId);
+    const sprint = await Sprint.findById(req.params.id);
     if (!sprint) {
       throw new Error("Cannot find that sprint");
     }

@@ -11,7 +11,6 @@ class NewSprint extends React.Component {
   state = { startDate: "", endDate: "" };
 
   handleSubmit = (event) => {
-    console.log("got it");
     createSprint(
       this.props.auth.token,
       this.state.startDate,

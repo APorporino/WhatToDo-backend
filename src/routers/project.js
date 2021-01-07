@@ -120,7 +120,6 @@ router.get("/project/:id/members", auth, async (req, res) => {
 router.get("/project/:id/admins", auth, async (req, res) => {
   let admins = [];
   try {
-    console.log("hee");
     const project = await Project.findById(req.params.id);
     for (id of project.admins) {
       const user = await User.findById(id);

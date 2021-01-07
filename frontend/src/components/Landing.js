@@ -6,6 +6,9 @@ import a from "../images/a.png";
 import b from "../images/b.png";
 import c from "../images/c.png";
 import d from "../images/d.png";
+import e from "../images/e.png";
+import f from "../images/f.png";
+import g from "../images/g.png";
 
 class Landing extends React.Component {
   render() {
@@ -26,7 +29,7 @@ class Landing extends React.Component {
                 This application allows teams to create shared projects and
                 manage user stories and tasks. It offers simple sprint
                 management, as well as the assigning and tracking of a task's
-                status.
+                progress.
               </p>
             </div>
             <Row>
@@ -76,6 +79,28 @@ class Landing extends React.Component {
             <hr></hr>
             <br></br>
             <img alt="picD" className="pic1" src={d} />
+          </Col>
+        </Row>
+        <Row className="margin">
+          <Col className="overall2" lg={6} md={12} xs={12}>
+            <h1>Create and view sprints</h1>
+            <hr></hr>
+            <br></br>
+            <img alt="picF" className="pic1" src={f} />
+          </Col>
+          <Col className="overall2" lg={6} md={12} xs={12}>
+            <h1>Add stories to sprint</h1>
+            <hr></hr>
+            <br></br>
+            <img alt="picE" className="pic1" src={e} />
+          </Col>
+        </Row>
+        <Row className="margin">
+          <Col className="overall2" lg={6} md={12} xs={12}>
+            <h1>Edit task properties</h1>
+            <hr></hr>
+            <br></br>
+            <img alt="picG" className="pic1" src={g} />
           </Col>
         </Row>
       </div>

@@ -1,8 +1,8 @@
-import { TASK } from "../actions/types";
+import { SPRINT_TASK } from "../actions/types";
 
 const taskReducer = (state = [], action) => {
   switch (action.type) {
-    case TASK:
+    case SPRINT_TASK:
       return action.payload;
     default:
       return state;
