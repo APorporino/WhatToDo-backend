@@ -72,12 +72,7 @@ class Header extends React.Component {
       default:
         return (
           <Nav className="ml-auto">
-            <Nav.Link
-              href="/"
-              // onClick={localStorage.setItem("PreviousView", "")}
-            >
-              Home
-            </Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link onClick={this.props.logout}>Logout</Nav.Link>
             <Nav.Link href="/">{this.props.auth.user.email}</Nav.Link>
           </Nav>

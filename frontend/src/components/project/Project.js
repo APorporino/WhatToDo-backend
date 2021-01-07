@@ -19,6 +19,7 @@ class Project extends React.Component {
   componentDidMount() {
     const view = localStorage.getItem("PreviousView");
     this.setState({ view });
+    localStorage.setItem("PreviousView", "");
   }
 
   projectSelected(view) {
